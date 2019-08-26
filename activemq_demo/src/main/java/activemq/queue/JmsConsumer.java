@@ -7,9 +7,9 @@ import javax.jms.*;
 
 // 消息的消费者  也就是回答消息的系统
 public class JmsConsumer {
-    public static final String ACTIVEMQ_URL = "tcp://192.168.17.3:61616";
+    public static final String ACTIVEMQ_URL = "tcp://192.168.116.128:61616";
    // public static final String ACTIVEMQ_URL = "nio://192.168.17.3:61608";
-    public static final String QUEUE_NAME = "jdbc 01 ";
+    public static final String QUEUE_NAME = "jdbc01 ";
 
     public static void main(String[] args) throws Exception{
         System.out.println(" 这里是 3 号 消费者 ");
@@ -22,7 +22,7 @@ public class JmsConsumer {
         connection.start();
         // 3 创建回话  session
         // 两个参数，第一个事务， 第二个签收
-        Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+        Session session = connection.createSession(false, Session.CLIENT_ACKNOWLEDGE);
         // 4 创建目的地 （两种 ： 队列/主题   这里用队列）
         Queue queue = session.createQueue(QUEUE_NAME);
         // 5 创建消息的消费者
